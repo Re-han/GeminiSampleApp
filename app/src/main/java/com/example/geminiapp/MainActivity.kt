@@ -115,7 +115,7 @@ class MainActivity : ComponentActivity() {
                             onClick = {
                                 data.value = ""
                                 prompt = text
-                                generateDataClicked.value = !generateDataClicked.value
+                                generateDataClicked.value = true
                                 generateData()
                             },
                             Modifier.align(Alignment.CenterHorizontally)
@@ -135,6 +135,7 @@ class MainActivity : ComponentActivity() {
                                         imageUri.value = ""
                                         modelName.value = ""
                                         data.value = ""
+                                        text = ""
                                     },
                                 ) {
                                     Icon(
