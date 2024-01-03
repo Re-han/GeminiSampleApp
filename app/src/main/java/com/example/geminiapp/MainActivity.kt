@@ -20,6 +20,9 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.text.KeyboardActions
+import androidx.compose.foundation.text.KeyboardOptions
+import androidx.compose.foundation.text.selection.SelectionContainer
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.AccountBox
@@ -39,6 +42,7 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.input.KeyboardCapitalization
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.core.content.ContentProviderCompat.requireContext
@@ -108,8 +112,11 @@ class MainActivity : ComponentActivity() {
                             value = text,
                             onValueChange = { text = it },
                             label = { Text(text = "Message") },
+                            keyboardOptions = KeyboardOptions.Default.copy(
+                                capitalization = KeyboardCapitalization.Sentences
+                            ),
                             trailingIcon = trailingIconView,
-                            modifier = Modifier.fillMaxWidth()
+                            modifier = Modifier.fillMaxWidth(),
                         )
                         Button(
                             onClick = {
@@ -202,12 +209,14 @@ fun Greeting(name: String, modifier: Modifier = Modifier, generateDataClicked: B
                     CircularProgressIndicator()
                 }
             else
-                Text(
-                    text = name,
-                    modifier = modifier
-                        .verticalScroll(rememberScrollState())
-                        .fillMaxWidth()
-                )
+                SelectionContainer {
+                    Text(
+                        text = name,
+                        modifier = modifier
+                            .verticalScroll(rememberScrollState())
+                            .fillMaxWidth()
+                    )
+                }
         }
     }
 }
