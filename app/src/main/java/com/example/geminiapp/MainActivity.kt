@@ -143,6 +143,7 @@ class MainActivity : ComponentActivity() {
                                         modelName.value = ""
                                         data.value = ""
                                         text = ""
+                                        generateDataClicked.value = false
                                     },
                                 ) {
                                     Icon(
